@@ -1,0 +1,22 @@
+<div class="page-container">
+
+  <div class="board login-box">
+
+    <h2>Login</h2>
+
+    <input type="email" [(ngModel)]="email" placeholder="Email">
+    <small *ngIf="erroEmail" class="erro">Email obrigatório</small>
+
+    <input type="password" [(ngModel)]="senha" placeholder="Senha">
+    <small *ngIf="erroSenha" class="erro">Senha obrigatória</small>
+
+    <button class="main-btn" (click)="login()">Entrar</button>
+
+    <p>
+      Não tem conta?
+      <a routerLink="/register">Cadastre-se</a>
+    </p>
+
+  </div>
+
+</div>

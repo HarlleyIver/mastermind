@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+
+  <div class="board">
+
+    <div class="board-left">
+
+      <h2>🏆 Ranking</h2>
+
+      <div class="row header">
+        <div>#</div>
+        <div>Usuário</div>
+        <div>Score</div>
+        <div>Tentativas</div>
+      </div>
+
+      <div *ngFor="let r of ranking; let i = index" class="row">
+
+        <div class="position">{{ i + 1 }}º</div>
+        <div class="email">{{ r.username }}</div>
+        <div class="score">{{ r.score }}</div>
+        <div class="attempts">{{ r.attemptsUsed }}</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

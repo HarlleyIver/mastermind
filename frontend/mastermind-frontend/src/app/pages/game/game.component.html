@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+
+  <div class="game-wrapper">
+
+    <div class="board">
+
+      <div class="board-left">
+
+        <div *ngFor="let row of rows; let i = index" class="row">
+
+          <ng-container *ngIf="i === history.length && !isGameOver">
+
+            <div class="holes">
+              <div *ngFor="let j of [0,1,2,3]; let idx = index"
+                   class="hole"
+                   [ngStyle]="{'background-color': guess[idx] || '#3a2a00'}">
+              </div>
+            </div>
+
+            <div class="feedback">
+              <div class="mini" *ngFor="let k of [0,1,2,3]"></div>
+            </div>
+
+          </ng-container>
+
+          <ng-container *ngIf="history[i]">
+
+            <div class="holes">
+              <div *ngFor="let c of history[i].guess"
+                   class="hole filled"
+                   [ngStyle]="{'background-color': c}">
+              </div>
+            </div>
+
+            <div class="feedback">
+              <div class="mini"
+                   *ngFor="let j of [0,1,2,3]; let idx = index"
+                   [ngClass]="history[i].feedbackArray[idx]">
+              </div>
+            </div>
+
+          </ng-container>
+
+          <ng-container *ngIf="i > history.length">
+
+            <div class="holes">
+              <div *ngFor="let k of [0,1,2,3]" class="hole"></div>
+            </div>
+
+            <div class="feedback">
+              <div class="mini" *ngFor="let k of [0,1,2,3]"></div>
+            </div>
+
+          </ng-container>
+
+        </div>
+
+      </div>
+
+      <div class="board-right">
+
+        <h2>Mastermind</h2>
+
+        <div class="palette">
+          <button *ngFor="let c of colors"
+                  class="color-btn"
+                  [ngStyle]="{'background-color': c}"
+                  (click)="addColor(c)"
+                  [disabled]="isGameOver">
+          </button>
+        </div>
+
+        <button class="remove-btn"
+                (click)="removeLast()"
+                [disabled]="isGameOver">⌫</button>
+
+        <button class="send-btn"
+                (click)="sendAttempt()"
+                [disabled]="isGameOver">Enviar</button>
+
+        <button class="start-btn"
+                (click)="startGame()">Novo Jogo</button>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="secretCode.length" class="secret">
+      <h3>Código secreto:</h3>
+      <div class="holes">
+        <div *ngFor="let c of secretCode"
+             class="hole filled"
+             [ngStyle]="{'background-color': c}">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
